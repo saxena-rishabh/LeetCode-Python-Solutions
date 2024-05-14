@@ -4,6 +4,10 @@ class Solution:
         dic={}
         lst=[]
         for i in range(len(nums)):
+            if nums[i] > 0:
+                break
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
             low=i+1
             high=len(nums)-1
             while low<high:
