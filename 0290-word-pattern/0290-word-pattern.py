@@ -1,18 +1,17 @@
 class Solution:
     def wordPattern(self, pattern: str, s: str) -> bool:
-
-        patternFirstIndex = dict()
-        patternSignature = []
-        for index, char in enumerate(pattern):
-            if char not in patternFirstIndex:
-                patternFirstIndex[char] = index
-            patternSignature.append(patternFirstIndex[char])
-
-        sFirstIndex = dict()
-        sSignature = []
-        for index, word in enumerate(s.split(" ")):
-            if word not in sFirstIndex:
-                sFirstIndex[word] = index
-            sSignature.append(sFirstIndex[word])
-
-        return patternSignature == sSignature
+        dic = {}
+        s = s.split()
+        mapped_in_s = set()
+        for i in range(len(pattern)):
+            if pattern[i] not in dic:
+                if s[i] not in mapped_in_s:
+                    dic[pattern[i]] = (pattern[i], s[i])
+                    mapped_in_s.add(s[i])
+                else:
+                    return False
+            else:
+                if dic[pattern[i]][1] != s[i]:
+                    return False
+            
+        return True
