@@ -1,26 +1,19 @@
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        m_map = {}
+        dic = {}
         for i in magazine:
-            if i in m_map:
-                m_map[i] += 1
+            if i in dic:
+                dic[i] += 1
             else:
-                m_map[i] = 1
-
+                dic[i] = 1
+        print(dic)
         for i in ransomNote:
-            if i not in m_map:
-                return False
-            elif m_map[i] < 1:
-                return False
+            if i in dic:
+                if dic[i] > 0:
+                    dic[i] -= 1
+                else:
+                    return False
             else:
-                m_map[i] -= 1
-        
-        return True
-        
-        for key, value in r_map.items():
-            if value >= 1:
                 return False
-        
         return True
-        
         
